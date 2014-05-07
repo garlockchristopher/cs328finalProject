@@ -1,6 +1,7 @@
 template<class T>
-Vector<T> bBuilder<T>::operator()(unsigned int size/*, topFunc<T> tFunc, botFunc<T> bFunc, leftFunc<T> lFunc, rightFunc<T> rFunc*/)
+Vector<T> bBuilder<T>::operator()(unsigned int n/*, topFunc<T> tFunc, botFunc<T> bFunc, leftFunc<T> lFunc, rightFunc<T> rFunc*/)
 {
+  unsigned int size = (n - 1) * (n - 1);
   Vector<T> b(size);
   unsigned int pos = 0;
   
