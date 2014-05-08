@@ -4,6 +4,11 @@ Author: Chris Garlock
 Purpose: An abstract base class designed to be the parent of several different types of matrices
 */
 
+# include <istream>
+# include <ostream>
+# include <iostream>
+# include "Vector.h"
+
 #ifndef MATRIXBASE_H
 #define MATRIXBASE_H
 

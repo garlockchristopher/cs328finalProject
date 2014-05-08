@@ -9,6 +9,7 @@
 #include "Vector.h"
 #include <stdexcept>
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 #include "Matrix.h"
 
@@ -101,9 +102,9 @@ class Symmetric: public virtual MatrixBase<T>
          for (unsigned int j=0;j<mySym.MatrixBase<T>::size();j++)
          {
            if (j>i)
-             os<<mySym[j][i]<<' ';
+             os<<setw(4)<<mySym[j][i]<<' ';
            else
-             os<<mySym[i][j]<<' ';
+             os<<setw(4)<<mySym[i][j]<<' ';
          }
          os<<endl;
        }
