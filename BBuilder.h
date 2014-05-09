@@ -2,18 +2,17 @@
 #define BBUILDER_H
 
 #include <cmath>
-#include <iostream>//DONT FORGET TO TAKE THIS OUT
 #include "Vector.h"
-//#include "topFunc.h"
-//#include "botFunc.h"
-//#include "leftFunc.h"
-//#include "rightFunc.h"
+#include "TopFunc.h"
+#include "BotFunc.h"
+#include "LeftFunc.h"
+#include "RightFunc.h"
 
 template <class T>
-class bBuilder
+class BBuilder
 {
   public:
-    Vector<T> operator()(unsigned int size/*, topFunc<T> tFunc, botFunc<T> bFunc, leftFunc<T> lFunc, rightFunc<T> rFunc*/);
+    Vector<T> operator()(unsigned int size, TopFunc<T> tFunc, BotFunc<T> bFunc, LeftFunc<T> lFunc, RightFunc<T> rFunc);
 };
 
 #include "BBuilder.hpp"
