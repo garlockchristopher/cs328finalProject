@@ -102,3 +102,16 @@ T Vector<T>::norm()const
   // return the square root of the sum
   return pow(sum, 0.5);
 }
+
+template <class T>
+Vector<T> Vector<T>:: operator- ( const Vector<T> & rhs ) const
+{
+  if (m_vector.size() != rhs.size())
+    throw std::length_error("Vectors are not the same length");
+  Vector<T> difference ( rhs.size() );
+  for ( unsigned int i = 0; i < size(); i++ )
+  {
+    difference[i] = m_vector[i] - rhs[i];
+  }
+  return difference;
+}

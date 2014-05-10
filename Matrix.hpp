@@ -142,7 +142,7 @@ Matrix<T> Matrix<T>::operator+ (const Matrix<T>& rhs)
 // Returns: The updated Matrix
 // Preconditions: multiplication, addition and assignment operators defined for type T
 template <class T>
-Matrix<T> Matrix<T>::operator* (const Matrix<T>& rhs)
+Matrix<T> Matrix<T>::operator* (const Matrix<T>& rhs) const
 {
   if (size()==0)
     throw std::length_error("Can not perform operations on an empty matrix.");
@@ -187,7 +187,7 @@ Matrix<T> Matrix<T>::operator* (const T& rhs)
 // Returns: The updated Matrix
 // Preconditions: multiplication and assignment operators defined for type T
 template <class T>
-Vector<T> Matrix<T>::operator* (const Vector<T>& rhs)
+Vector<T> Matrix<T>::operator* (const Vector<T>& rhs) const
 {
   if (size()==0)
     throw std::length_error("Can not perform operations on an empty matrix.");

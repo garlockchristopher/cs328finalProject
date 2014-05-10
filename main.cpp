@@ -2,6 +2,7 @@
 # include "ABuilder.h"
 # include "BBuilder.h"
 # include "Symmetric.h"
+# include "SteepestDescent.h"
 # include "Vector.h"
 # include "GaussianElimination.h"
 
@@ -22,18 +23,25 @@ int main()
   LeftFunc<double> lFunc;
   RightFunc<double> rFunc;
   TopFunc<double> tFunc;
-  
-  //solve Ax=b for x
   Vector<double> b = myBBuilder ( 6, tFunc, bFunc, lFunc, rFunc );
-  GaussianElimination<double> GEsolver;
-  Vector<double> x = GEsolver(A, b);
   
-  //print results  
-  cout << "\nA: \n" << A << endl;
-  cout << "\nb: \n" << b << endl;  
-  cout << "\nx: \n" << x << endl;
-  Matrix<double> solution = solutionMatrix(x, tFunc, bFunc, lFunc, rFunc);
-  cout << "\n Solution Matrix for the Gaussian Elimination Method: \n" << solution << endl;
+  //Fill a Vector with solving methods
+  
+  SolvingMethod<double> * methods[2];
+  methods[0] = new GaussianElimination<double>;
+  methods[1] = new SteepestDescent<double>( .00001 );
+  
+  for ( unsigned int i = 0; i < 2; i++ )
+  {
+    Vector<double> x = methods[i] -> operator()(A, b);
+    
+    //print results  
+    cout << "\nA: \n" << A << endl;
+    cout << "\nb: \n" << b << endl;  
+    cout << "\nx: \n" << x << endl;
+    Matrix<double> solution = solutionMatrix(x, tFunc, bFunc, lFunc, rFunc);
+    cout << "\n Solution Matrix for the Gaussian Elimination Method: \n" << solution << endl;
+  }
 }
 
 template <class T>

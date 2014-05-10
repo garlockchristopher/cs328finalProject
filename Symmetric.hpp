@@ -81,7 +81,7 @@ Symmetric<T> Symmetric<T>::operator+ (const Symmetric<T>& rhs) const
 }
 
 template <class T>
-Symmetric<T> Symmetric<T>::operator* (const Symmetric<T>& rhs)
+Symmetric<T> Symmetric<T>::operator* (const Symmetric<T>& rhs) const
 {
   bool symmetricProduct = false;
   //Check to see if the two Symmetrics commute (AB == BA)
@@ -120,7 +120,7 @@ Symmetric<T> Symmetric<T>::operator* (const T& rhs)
 }
 
 template <class T>
-Vector<T> Symmetric<T>::operator* (const Vector<T>& rhs)
+Vector<T> Symmetric<T>::operator* (const Vector<T>& rhs) const
 {
   if(MatrixBase<T>::size() != rhs.size())
     throw std::length_error("The Symmetric and Vector must be of the same size");

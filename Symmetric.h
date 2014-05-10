@@ -57,7 +57,7 @@ class Symmetric: public virtual MatrixBase<T>
     // Parameters: Calling object, Symmetric to multiply with the calling object
     // Returns: The updated Symmetric
     // Preconditions: multiplication, addition and assignment operators defined for type T
-    Symmetric<T> operator* (const Symmetric<T>& rhs);
+    Symmetric<T> operator* (const Symmetric<T>& rhs) const;
     
     // Purpose: Multiplication operator (with a scalar)
     // Parameters: Calling object, scalar to multiply with the calling object
@@ -69,7 +69,7 @@ class Symmetric: public virtual MatrixBase<T>
     // Parameters: Calling object, Vector to multiply with the calling object
     // Returns: The updated Symmetric
     // Preconditions: multiplication and assignment operators defined for type T
-    Vector<T> operator* (const Vector<T>& rhs);
+    Vector<T> operator* (const Vector<T>& rhs) const;
     
     //parenthesis operator, returns a reference to position (row, col) of the matrix
     T& operator()(const unsigned int row, const unsigned int col);

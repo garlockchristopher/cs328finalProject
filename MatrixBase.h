@@ -26,6 +26,8 @@ class MatrixBase
     
     virtual const T& operator()(const unsigned int row, const unsigned int col)const = 0;
     
+    virtual Vector<T> operator* ( const Vector<T> & rhs ) const = 0;
+    
     //pure virtual print function - should be used to call the insertion operator
     virtual ostream& print(ostream& os) = 0;
     

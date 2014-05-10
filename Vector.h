@@ -7,6 +7,7 @@
 
 #include "Array.h"
 #include <stdexcept>
+#include <cmath>
 
 template <class T>
 class Vector
@@ -73,6 +74,15 @@ class Vector
     // Pre:  negation ( unary - ) operator is defined for type T.
     // Returns: the vector with elm = -elm assigned for every element in the vector
     Vector<T> operator- () const;
+    
+    // Purpose: subracts the elements of rhs from the elements of the calling object and
+    // returns the result
+    // Pre: the - and = operators are defined for type T
+    Vector<T> operator- ( const Vector<T> & rhs ) const;
+    
+    // Purpose subracts the elements of rhs from the elements of the calling object and
+    // returns the result
+    Vector<T> operator+ ( const Vector<T> & rhs ) const { return *this - -rhs; }
     
    // Pre: The +=, *, abs() and pow() functions are all defined for type T
    // Returns: the square root of the sum of the squares of the elements in the vector

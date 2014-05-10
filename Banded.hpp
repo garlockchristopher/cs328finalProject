@@ -184,7 +184,7 @@ Banded<T> Banded<T>::operator* (const T& rhs)
 }
 
 template <class T>
-Vector<T> Banded<T>::operator* (const Vector<T>& rhs)
+Vector<T> Banded<T>::operator* (const Vector<T>& rhs) const
 {
   if(MatrixBase<T>::size() != rhs.size())
     throw std::length_error("The Banded and Vector must be of the same size");

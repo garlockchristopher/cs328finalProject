@@ -67,7 +67,7 @@ class Diagonal: public virtual MatrixBase<T>
     // Parameters: Calling object, Vector to multiply with the calling object
     // Returns: The resulting vector
     // Preconditions: multiplication, addition, and assignment operators defined for type T
-    Vector<T> operator* (const Vector<T>& rhs);
+    Vector<T> operator* (const Vector<T>& rhs) const;
     
     //parenthesis operator, returns a reference to position (row, col) of the matrix
     //note: if you try to change an element where row!=col, it will actually change m_zero

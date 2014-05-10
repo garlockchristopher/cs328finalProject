@@ -70,7 +70,7 @@ class Banded: public virtual MatrixBase<T>
     // Parameters: Calling object, Vector to multiply with the calling object
     // Returns: The updated Banded
     // Preconditions: multiplication and assignment operators defined for type T
-    Vector<T> operator* (const Vector<T>& rhs);
+    Vector<T> operator* (const Vector<T>& rhs) const;
     
     //print function, used by base class MatrixBase to call this classes insertion operator
     virtual ostream& print(ostream& os){return os<<*this;}

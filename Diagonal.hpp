@@ -75,7 +75,7 @@ Diagonal<T> Diagonal<T>::operator* (const T& rhs)
 }
 
 template <class T>
-Vector<T> Diagonal<T>::operator* (const Vector<T>& rhs)
+Vector<T> Diagonal<T>::operator* (const Vector<T>& rhs) const
 {
   if(MatrixBase<T>::size() != rhs.size())
     throw std::length_error("The Diagonal and Vector must be of the same size");

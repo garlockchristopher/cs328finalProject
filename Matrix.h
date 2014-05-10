@@ -83,7 +83,7 @@ class Matrix: public virtual MatrixBase<T>
     // Parameters: Calling object, Matrix to multiply with the calling object
     // Returns: The updated Matrix
     // Preconditions: multiplication, addition and assignment operators defined for type T
-    Matrix<T> operator* (const Matrix<T>& rhs);
+    Matrix<T> operator* (const Matrix<T>& rhs) const;
     
     // Purpose: Multiplication operator (with a scalar)
     // Parameters: Calling object, scalar to multiply with the calling object
@@ -95,7 +95,7 @@ class Matrix: public virtual MatrixBase<T>
     // Parameters: Calling object, Vector to multiply with the calling object
     // Returns: The updated Vector
     // Preconditions: multiplication and assignment operators defined for type T
-    Vector<T> operator* (const Vector<T>& rhs);
+    Vector<T> operator* (const Vector<T>& rhs) const;
     
     // Purpose: To swap two rows in a matrix
     // Parameters: the rows to swap
