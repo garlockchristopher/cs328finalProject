@@ -91,3 +91,14 @@ Vector<T> operator- () const
 	}
 	return negated;
 }
+
+template <class T>
+T Vector<T>::norm()const
+{
+  T sum = 0;
+  // get the sum of the squared absolute values of all elements
+  for(unsigned int i = 0; i<m_vector.size();i++)
+    sum += abs(m_vector[i]) * abs(m_vector[i]);
+  // return the square root of the sum
+  return pow(sum, 0.5);
+}
