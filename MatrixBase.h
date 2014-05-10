@@ -37,6 +37,8 @@ class MatrixBase
     
     //virtual destructor
     virtual ~MatrixBase(){}
+    
+    virtual bool diagonallyDominant(){return false;}
 };
 
 template <class T>

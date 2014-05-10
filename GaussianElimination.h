@@ -6,10 +6,11 @@
 #include "Vector.h"
 
 template <class T>
-class GaussianElimination
+class GaussianElimination: public SolvingMethod
 {
   public:
-    Vector<T> operator()(Symmetric<T>& A, Vector<T>& b)
+    GaussianElimination(double error = -1): SolvingMethod( error ){}
+    virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& b)
     {
       Matrix<T> myMatrix(A.size());
       for(unsigned int i=0;i<myMatrix.size(); i++)
@@ -33,6 +34,7 @@ class GaussianElimination
             myMatrix.rowOp(i,mult,j);
             b.rowOp(i,mult,j);
             myMatrix[j][i] = 0;
+            iterations++;
           }
         }
       }

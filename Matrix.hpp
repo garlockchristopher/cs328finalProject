@@ -334,3 +334,19 @@ Vector<T> Matrix<T>::solve(Vector<T> b)
   }
   return solution;
 }
+
+template<class T>
+virtual bool Matrix<T>::diagonallyDominant()
+{
+  bool retVal = true;
+  for(unsigned int i=0; i<MatrixBase<T>::size(); i++)
+  {
+    T sum = 0;
+    for(unsigned int j=0; j<MatrixBase<T>::size(); j++)
+      if(i!=j)
+        sum+=abs(operator()(i,j));
+    if (sum >= abs(m_matrix[i][i]))
+      retVal = false;
+  }
+  return retVal;
+}

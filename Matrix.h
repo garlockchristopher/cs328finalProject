@@ -134,7 +134,9 @@ class Matrix: public virtual MatrixBase<T>
     
     virtual istream& read(istream& is){return is>>*this;}
     
-     virtual Vector<T> solve(Vector<T> b);
+    virtual Vector<T> solve(Vector<T> b);
+     
+    virtual bool diagonallyDominant();
     
     // Purpose: To output a matrix to an output stream
     // Parameters: lefthand operand should be an output stream and rhs should be a Matrix
