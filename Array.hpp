@@ -169,14 +169,17 @@ const T& Array<T>::operator[](unsigned int i) const
 template <class T>
 Array<T>& Array<T>::operator=(const Array<T>& rhs)
 {
-  if (m_data==rhs.m_data)  //no need to create a new array and stuff if
-  {                        //assigning to the same object.
-    return *this;
-  }
-  clear();
-  for (unsigned int i=0;i<m_size;i++)
+  if(m_data != rhs.m_data) // objects are pointing to two seperate arrays
   {
-    push_back(rhs.m_data[i]);
+    m_size = rhs.m_size;
+    m_max_size = rhs.m_max_size;
+    T *temp = new T[rhs.m_size];
+    for( unsigned int i = 0; i<rhs.m_size; i++)
+      temp[i] = rhs[i];
+    if (m_data != NULL)
+      delete[] m_data;
+    m_data = temp;
+    temp = NULL;
   }
   return *this;
 }

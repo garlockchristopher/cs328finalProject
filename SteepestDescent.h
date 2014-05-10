@@ -23,7 +23,7 @@ class SteepestDescent: public virtual SolvingMethod<T>
       Vector<T> X ( B.size() );
       Vector<T> prevX ( B.size() );
       Vector<T> Diff ( B.size() );
-      double alpha;
+      T alpha;
       SolvingMethod<T>:: iterations = 0;
       
       do
