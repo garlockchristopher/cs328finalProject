@@ -11,10 +11,10 @@ class GaussianElimination
   public:
     Vector<T> operator()(Symmetric<T>& A, Vector<T>& b)
     {
-      Matrix<T> myMatrix(MatrixBase<T>::size());
+      Matrix<T> myMatrix(A.size());
       for(unsigned int i=0;i<myMatrix.size(); i++)
         for(unsigned int j=0;j<myMatrix.size(); j++)
-          myMatrix[i][j] = operator()(i,j);
+          myMatrix[i][j] = A(i,j);
       //Forward elimination with partial pivoting
       for(unsigned int i=0;i<myMatrix.size()-1;i++) // need to eliminate things down to last column
       {
