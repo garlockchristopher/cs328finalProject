@@ -5,6 +5,8 @@
 # include "Vector.h"
 # include "MatrixBase.h"
 # include "SolvingMethod.h"
+# include <iostream>
+using namespace std;
 
 # include <stdexcept>
 # ifndef STEEPESTDESCENT_H
@@ -31,7 +33,8 @@ class SteepestDescent: public virtual SolvingMethod<T>
         prevX = X;
         Diff = B - ( A * X );
         alpha = ( Diff * Diff ) / (( A * X ) * X );
-        X = X + Diff * alpha;
+        cout << Diff.size();
+        X = X + ( Diff * alpha );
         SolvingMethod<T>:: iterations++;
       } while ( (X - prevX).norm() > SolvingMethod<T>:: errorTolerance );
       

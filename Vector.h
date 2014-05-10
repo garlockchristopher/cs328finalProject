@@ -22,7 +22,7 @@ class Vector
     // Parameters: Size of the vector
     // Returns: nothing
     // Postconditions: a Vector of the specified size is created
-    Vector(unsigned int size);
+    Vector(unsigned int size): m_vector(size){}
     
     // Purpose: Destructor
     // Parameters: none
@@ -33,7 +33,7 @@ class Vector
     // Purpose: accessor function for the size of the vector
     // Parameters: none
     // Returns: an unsigned integer representing the size of the vector
-    unsigned int size() const {return m_vector.m_size;}
+    unsigned int size() const {return m_vector.size();}
     
     // Purpose: To swap the values of two indexes in the vector
     // Parameters: the rows to swap

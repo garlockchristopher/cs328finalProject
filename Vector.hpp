@@ -3,18 +3,6 @@
    Christopher Garlock
 */
 
-// Purpose: Constructor
-// Parameters: Size of the vector
-// Returns: nothing
-// Postconditions: a Vector of the specified size is created
-template <class T>
-Vector<T>::Vector(unsigned int size)
-{
-  m_vector.m_data = new T [size];
-  m_vector.m_size = size;
-  m_vector.m_max_size = size;
-}
-
 // Purpose: To swap the values of two indexes in the vector
 // Parameters: the rows to swap
 // Returns: nothing
