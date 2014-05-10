@@ -69,3 +69,25 @@ const T& Vector<T>::operator[](unsigned int i) const
     throw std::out_of_range("The vector is empty or you went past the end");
   return m_vector[i];
 }
+
+template <typename T>
+T Vector<T>::operator* (const Vector<T>& rhs) const
+{
+  if (m_size != rhs.m_size)
+    throw std::length_error("Vectors are not the same length");
+  T dotProduct = 0;
+  for ( unsigned int i = 0; i < m_size; i++ )
+    dotProduct += m_vector[i] * rhs[i];
+  return dotProduct;
+}
+
+template <typename T>
+Vector<T> operator- () const
+{
+	Vector<T> negated ( m_vector.size() );
+	for ( unsigned int i = 0; i < m_vector.size(); i++ )
+	{
+		negated[i] = -m_vector[i];
+	}
+	return negated;
+}

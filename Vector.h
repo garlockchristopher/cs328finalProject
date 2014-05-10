@@ -62,6 +62,17 @@ class Vector
     // Parameters: The calling object and a vector to be copied
     // Returns: a reference to the updated vector
     Vector<T>& operator=(const Vector<T>& rhs){m_vector = rhs.m_vector; return *this;}
+	
+	// Purpose: calculates the dot product between two vectors
+    // Parameters: rhs is the second vector in the dot product
+    // Pre: Vectors are of the same length T can be assigned 0
+    // Returns: the dot product of the calling object and rhs
+    T operator* (const Vector<T>& rhs) const;
+	
+	// Purpose: negates every element of the Vector
+	// Pre:  negation ( unary - ) operator is defined for type T.
+	// Returns: the vector with elm = -elm assigned for every element in the vector
+	Vector<T> operator- () const;
     
     // Purpose: Insertion operator
     // Parameters: An ostream and a vector
