@@ -3,6 +3,7 @@
 # include "BBuilder.h"
 # include "Symmetric.h"
 # include "SteepestDescent.h"
+# include "GaussSiedel.h"
 # include "Vector.h"
 # include "GaussianElimination.h"
 
@@ -29,7 +30,7 @@ int main()
   
   SolvingMethod<double> * methods[2];
   methods[0] = new GaussianElimination<double>;
-  methods[1] = new SteepestDescent<double>( .00001 );
+  methods[1] = new GaussSiedel<double>( .001 );
   
   for ( unsigned int i = 0; i < 2; i++ )
   {

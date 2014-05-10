@@ -155,7 +155,7 @@ const T& Symmetric<T>::operator()(const unsigned int row, const unsigned int col
 }
 
 template<class T>
-bool Symmetric<T>::diagonallyDominant()
+bool Symmetric<T>::diagonallyDominant()const
 {
   bool retVal = true;
   for(unsigned int i=0; i<MatrixBase<T>::size(); i++)

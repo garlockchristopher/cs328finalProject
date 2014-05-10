@@ -1,29 +1,29 @@
 #ifndef GAUSS_SIEDEL
 #define GAUSS_SIEDEL
 
-#include "Vector.h"
-#include "Symmetric.h"
-#include 
+# include "Vector.h"
+# include "MatrixBase.h"
+# include "SolvingMethod.h"
 
 template <class T>
-class GaussSiedel: public virtual SolvingMethod
+class GaussSiedel: public virtual SolvingMethod<T>
 {
   public:
-    GaussSiedel(double error): SolvingMethod( error ){}
+    GaussSiedel(double error): SolvingMethod<T>( error ){}
     
-    virtual Vector<T> operator()(const MatrixBase<T> A, const Vector<T> b)
+    virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& b)
     {
       if(!A.diagonallyDominant())
         throw "Matrix must be diagonallyDominant to use the GaussSiedel Method.";
       
       //reset iterations
-      SolvingMethod::iterations = 0;
+      SolvingMethod<T>::iterations = 0;
       
       Vector<T> current(b.size());
       Vector<T> last(b.size());
       
       //build initial guess
-      for (int i = 0; i < current.size(); i++)
+      for (unsigned int i = 0; i < current.size(); i++)
         current[i] = 0;
       
       do
@@ -40,10 +40,10 @@ class GaussSiedel: public virtual SolvingMethod
           current[i] = (1.0/A(i,i)) * (b[i] - subtractMe);
         }
         
-        SolvingMethod::iterations++;
+        SolvingMethod<T>::iterations++;
       } while ((current - last).norm() > SolvingMethod<T>::errorTolerance);
       return current;
     }
-}
+};
 
 #endif

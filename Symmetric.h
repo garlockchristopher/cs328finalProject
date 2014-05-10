@@ -85,7 +85,7 @@ class Symmetric: public virtual MatrixBase<T>
     
     //checks to see if the symmetric matrix is diagonally dominant, if it is returns true
     //otherwise returns false
-    bool diagonallyDominant();
+    bool diagonallyDominant() const;
     
     //solves the equation Ax=b for x where A is the calling object
     //pre: size of b and calling object are the equal
