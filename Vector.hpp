@@ -20,7 +20,7 @@ Vector<T>::Vector(unsigned int size)
 // Returns: nothing
 // Postconditions: the two specified rows are interchanged.
 template <class T>
-void Vector<T>::swapRow(unsigned int row1, unsigned int row2)
+void Vector<T>::swapRow(const unsigned int & row1, const unsigned int & row2)
 {
   if(row1>size() || row2>size())
     throw std::out_of_range("One or more of the row numbers specified is too large.");
@@ -73,16 +73,16 @@ const T& Vector<T>::operator[](unsigned int i) const
 template <typename T>
 T Vector<T>::operator* (const Vector<T>& rhs) const
 {
-  if (m_size != rhs.m_size)
+  if (m_vector.size() != rhs.size())
     throw std::length_error("Vectors are not the same length");
   T dotProduct = 0;
-  for ( unsigned int i = 0; i < m_size; i++ )
+  for ( unsigned int i = 0; i < size(); i++ )
     dotProduct += m_vector[i] * rhs[i];
   return dotProduct;
 }
 
 template <typename T>
-Vector<T> operator- () const
+Vector<T> Vector<T>:: operator- () const
 {
 	Vector<T> negated ( m_vector.size() );
 	for ( unsigned int i = 0; i < m_vector.size(); i++ )

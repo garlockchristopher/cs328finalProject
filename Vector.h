@@ -38,7 +38,7 @@ class Vector
     // Parameters: the rows to swap
     // Returns: nothing
     // Postconditions: the two specified rows are interchanged.
-    void swapRow(unsigned int row1, unsigned int row2);
+    void swapRow( const unsigned int & row1, const unsigned int & row2);
     
     // Purpose: To perform a row operation on the vector
     // Parameters:  two rows and a multiplier
@@ -76,7 +76,7 @@ class Vector
     
    // Pre: The +=, *, abs() and pow() functions are all defined for type T
    // Returns: the square root of the sum of the squares of the elements in the vector
-   T Vector<T>::norm()const;
+   T norm()const;
     
     // Purpose: Insertion operator
     // Parameters: An ostream and a vector

@@ -12,12 +12,12 @@
 template <typename T>
 class SolvingMethod
 {
-  private:
-    unsigned int iterations;
+  protected:
     double errorTolerance;
+    unsigned int iterations;    
   public:
     SolvingMethod ( double error ): errorTolerance(error), iterations(0) {}
-    virtual Vector<T> operator() ( const MatrixBase<T> & A, const MatrixBase<T> & X ) = 0;
+    virtual Vector<T> operator() ( const MatrixBase<T> & A, const Vector<T> & X ) = 0;
     unsigned int getIterations () const { return iterations; }
 };
 

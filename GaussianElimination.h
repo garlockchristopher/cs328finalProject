@@ -2,17 +2,19 @@
 #define GAUSSIAN_ELIMINATION_H
 
 #include "Symmetric.h"
+#include "SolvingMethod.h"
 #include "Matrix.h"
 #include "Vector.h"
 
 template <class T>
-class GaussianElimination: public SolvingMethod
+class GaussianElimination: public virtual SolvingMethod<T>
 {
   public:
-    GaussianElimination(double error = -1): SolvingMethod( error ){}
-    virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& b)
+    GaussianElimination(double error = -1): SolvingMethod<T>( error ){}
+    virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& B)
     {
       Matrix<T> myMatrix(A.size());
+      Vector<T> b = B;
       for(unsigned int i=0;i<myMatrix.size(); i++)
         for(unsigned int j=0;j<myMatrix.size(); j++)
           myMatrix[i][j] = A(i,j);
@@ -20,7 +22,7 @@ class GaussianElimination: public SolvingMethod
       for(unsigned int i=0;i<myMatrix.size()-1;i++) // need to eliminate things down to last column
       {
         //PIVOT
-        int rowWithMax;
+        unsigned int rowWithMax;
         rowWithMax = myMatrix.findMaxRow(i); //find row # with maximum element in col xzcV
         myMatrix.swapRow(i,rowWithMax);
         b.swapRow(i,rowWithMax);
@@ -34,7 +36,7 @@ class GaussianElimination: public SolvingMethod
             myMatrix.rowOp(i,mult,j);
             b.rowOp(i,mult,j);
             myMatrix[j][i] = 0;
-            iterations++;
+            SolvingMethod<T>:: iterations++;
           }
         }
       }

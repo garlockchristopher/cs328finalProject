@@ -336,7 +336,7 @@ Vector<T> Matrix<T>::solve(Vector<T> b)
 }
 
 template<class T>
-virtual bool Matrix<T>::diagonallyDominant()
+bool Matrix<T>::diagonallyDominant()
 {
   bool retVal = true;
   for(unsigned int i=0; i<MatrixBase<T>::size(); i++)
