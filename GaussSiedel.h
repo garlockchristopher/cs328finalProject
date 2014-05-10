@@ -4,7 +4,7 @@
 # include "Vector.h"
 # include "MatrixBase.h"
 # include "SolvingMethod.h"
-
+# include <iostream>
 template <class T>
 class GaussSiedel: public virtual SolvingMethod<T>
 {
@@ -13,14 +13,12 @@ class GaussSiedel: public virtual SolvingMethod<T>
     
     virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& b)
     {
-      if(!A.diagonallyDominant())
-        throw "Matrix must be diagonallyDominant to use the GaussSiedel Method.";
-      
       //reset iterations
       SolvingMethod<T>::iterations = 0;
       
       Vector<T> current(b.size());
       Vector<T> last(b.size());
+      
       
       //build initial guess
       for (unsigned int i = 0; i < current.size(); i++)

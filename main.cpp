@@ -16,7 +16,7 @@ int main()
 {
   //set up A
   ABuilder<double> myBuilder;
-  Symmetric<double> A = myBuilder ( 6 );
+  Symmetric<double> A = myBuilder ( 4 );
   
   //set up B
   BBuilder<double> myBBuilder;
@@ -24,13 +24,13 @@ int main()
   LeftFunc<double> lFunc;
   RightFunc<double> rFunc;
   TopFunc<double> tFunc;
-  Vector<double> b = myBBuilder ( 6, tFunc, bFunc, lFunc, rFunc );
+  Vector<double> b = myBBuilder ( 4, tFunc, bFunc, lFunc, rFunc );
   
   //Fill a Vector with solving methods
   
   SolvingMethod<double> * methods[2];
   methods[0] = new GaussianElimination<double>;
-  methods[1] = new GaussSiedel<double>( .001 );
+  methods[1] = new GaussSiedel<double>( .00001 );
   
   for ( unsigned int i = 0; i < 2; i++ )
   {
