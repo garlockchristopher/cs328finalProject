@@ -146,7 +146,7 @@ class Matrix: public virtual MatrixBase<T>
        {
          for (unsigned int j=0;j<myMatrix.size();j++)
          {
-           os<<myMatrix[i][j]<<' ';
+           os<< setw(10) << myMatrix[i][j]<<' ';
          }
          os<<endl;
        }

@@ -1,20 +1,20 @@
 # include <iostream>
-using namespace std;
-
 # include "ABuilder.h"
-#include "BBuilder.h"
+# include "BBuilder.h"
 # include "Symmetric.h"
 # include "Vector.h"
 # include "GaussianElimination.h"
 
+using namespace std;
+
 template <class T>
-Matrix<T> solutionMatrix(Vector<T> x, TopFunc tFunc, BotFunc bFunc, LeftFunc lFunc, RightFunc, rFunc);
+Matrix<T> solutionMatrix(Vector<T> x, TopFunc<T> tFunc, BotFunc<T> bFunc, LeftFunc<T> lFunc, RightFunc<T> rFunc);
 
 int main()
 {
   //set up A
   ABuilder<double> myBuilder;
-  Symmetric<double> A = myBuilder ( 4 );
+  Symmetric<double> A = myBuilder ( 6 );
   
   //set up B
   BBuilder<double> myBBuilder;
@@ -24,29 +24,39 @@ int main()
   TopFunc<double> tFunc;
   
   //solve Ax=b for x
-  Vector<double> b = myBBuilder ( 4, tFunc, bFunc, lFunc, rFunc );
+  Vector<double> b = myBBuilder ( 6, tFunc, bFunc, lFunc, rFunc );
   GaussianElimination<double> GEsolver;
   Vector<double> x = GEsolver(A, b);
   
   //print results  
   cout << "\nA: \n" << A << endl;
   cout << "\nb: \n" << b << endl;  
-  cout<< "\nx: \n" << x << endl;
+  cout << "\nx: \n" << x << endl;
+  Matrix<double> solution = solutionMatrix(x, tFunc, bFunc, lFunc, rFunc);
+  cout << "\n Solution Matrix for the Gaussian Elimination Method: \n" << solution << endl;
 }
 
 template <class T>
-Matrix<T> solutionMatrix(Vector<T> x, TopFunc tFunc, BotFunc bFunc, LeftFunc lFunc, RightFunc, rFunc)
+Matrix<T> solutionMatrix(Vector<T> x, TopFunc<T> tFunc, BotFunc<T> bFunc, LeftFunc<T> lFunc, RightFunc<T> rFunc)
 {
   unsigned int size = sqrt(x.size()) + 2;
   Matrix<T> solution(size);
-  for (unsinged int i = 0; i < size; i++)
+  unsigned int iterator = 0;
+  for (unsigned int i = size; i >= 1; i--) //start at bottom row and work up
   {
-    for (unsinged int j = 0; j < size; j++)
+    for (unsigned int j = 0; j < size; j++) //start at left column and work right
 	{
-	  if(i == size - 1) // top Row
-	    solution(i, j) = TopFunc(static_cast<T>(j)/static_cast<T>(size));
-	  else if(i == 0) //bottom Row
-	    solution(i, j) = botFunc(static_cast<T>(j)/static_cast<T>(size));
+	  if(i - 1 == 0) // top Row
+	    solution(i - 1, j) = tFunc(static_cast<T>(j)/static_cast<T>(size-1));
+	  else if(i == size) //bottom Row
+	    solution(i - 1, j) = bFunc(static_cast<T>(j)/static_cast<T>(size-1));
+	  else if(j == size - 1) //right column
+	    solution(i - 1, j) = rFunc(static_cast<T>(i - 1)/static_cast<T>(size-1));
+	  else if(j == 0) //left column
+	    solution(i - 1, j) = lFunc(static_cast<T>(i - 1)/static_cast<T>(size-1));
+	  else //pull from x
+	    solution(i - 1, j) = x[iterator++];
 	}
-  }  
+  }
+  return solution;
 }
