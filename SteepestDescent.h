@@ -23,6 +23,8 @@ class SteepestDescent: public virtual SolvingMethod<T>
         throw std:: length_error ( "Matrix and Vector must be the same size" );
       
       Vector<T> X ( B.size() );
+      for ( unsigned int i = 0; i < B.size(); i++ )
+        X[i] = 1;
       Vector<T> prevX ( B.size() );
       Vector<T> Diff ( B.size() );
       T alpha;
@@ -33,7 +35,6 @@ class SteepestDescent: public virtual SolvingMethod<T>
         prevX = X;
         Diff = B - ( A * X );
         alpha = ( Diff * Diff ) / (( A * X ) * X );
-        cout << Diff.size();
         X = X + ( Diff * alpha );
         SolvingMethod<T>:: iterations++;
       } while ( (X - prevX).norm() > SolvingMethod<T>:: errorTolerance );
