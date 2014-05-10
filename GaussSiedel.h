@@ -6,49 +6,43 @@
 #include 
 
 template <class T>
-class GaussSiedel
+class GaussSiedel: public virtual SolvingMethod
 {
   public:
     GaussSiedel(double error): SolvingMethod( error ){}
     
     virtual Vector<T> operator()(const MatrixBase<T> A, const Vector<T> b)
     {
-      if (mat.getSize() != vec.getSize())
-        throw_SizeMismatchException(mat.getSize(), vec.getSize());
+      if(!A.diagonallyDominant())
+        throw "Matrix must be diagonallyDominant to use the GaussSiedel Method.";
       
-      if (!(mat.isDiagonallyDominant()))
-        throw_NonDiagonallyDominantException();
+      //reset iterations
+      SolvingMethod::iterations = 0;
       
-      const int SIZE = vec.getSize();
+      Vector<T> current(b.size());
+      Vector<T> last(b.size());
       
-      Vector<T> curr_X(SIZE), prev_X;
-      
-      for (int i = 0; i < SIZE; ++i)
-        curr_X[i] = i;
-      
-      int iters = 0;
+      //build initial guess
+      for (int i = 0; i < current.size(); i++)
+        current[i] = 0;
       
       do
       {
-        prev_X = curr_X;
-        
-        for (int i = 0; i < SIZE; ++i)
+        last = current;
+        for (unsigned int i = 0; i < current.size(); ++i)
         {
-          T subt = 0;
-          
-          for (int j = 0; j < SIZE; ++j)
+          T subtractMe = 0;
+          for (unsigned int j = 0; j < current.size(); ++j)
           {
-            if (j != i)
-              subt += mat[i][j]*curr_X[j];
+            if (j != i) //not on diagonal
+              subtractMe += A(i,j) * current[j];
           }
-          
-          curr_X[i] = (1.0/mat[i][i]) * (vec[i] - subt);
+          current[i] = (1.0/A(i,i)) * (b[i] - subtractMe);
         }
         
-        ++iters;
-      } while ((curr_X - prev_X)%2 > ERROR_TOLERANCE && iters < MAX_ITERATIONS);
-      std::cout << iters << " iterations" << std::endl;
-      return curr_X;
+        SolvingMethod::iterations++;
+      } while ((current - last).norm() > SolvingMethod<T>::errorTolerance);
+      return current;
     }
 }
 

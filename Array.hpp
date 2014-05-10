@@ -173,13 +173,10 @@ Array<T>& Array<T>::operator=(const Array<T>& rhs)
   {                        //assigning to the same object.
     return *this;
   }
-  m_size=rhs.m_size;
-  m_max_size=rhs.m_max_size;
-  //delete [] m_data;
-  m_data=new T[m_max_size];
+  clear();
   for (unsigned int i=0;i<m_size;i++)
   {
-    m_data[i]=rhs.m_data[i];
+    push_back(rhs.m_data[i]);
   }
   return *this;
 }
