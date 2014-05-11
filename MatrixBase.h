@@ -22,10 +22,13 @@ class MatrixBase
     //virtual accessor function for size
     virtual unsigned int size() const{return m_size;}
     
+    //pure virtual () operator, returns the value of the matrix at the specified row and column
     virtual T& operator()(const unsigned int row, const unsigned int col) = 0;
     
+    //const version of above function
     virtual const T& operator()(const unsigned int row, const unsigned int col)const = 0;
     
+    //pure virtual * operator, used for Matrix - Vector multiplication.
     virtual Vector<T> operator* ( const Vector<T> & rhs ) const = 0;
     
     //pure virtual print function - should be used to call the insertion operator
@@ -40,6 +43,8 @@ class MatrixBase
     //virtual destructor
     virtual ~MatrixBase(){}
     
+    //returns true if a matrix is diagonallyDominant.  Defaults to false if the 
+    //function is not overwritten by the derived class
     virtual bool diagonallyDominant()const{return false;}
 };
 

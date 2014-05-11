@@ -16,7 +16,13 @@ template <typename T>
 class SteepestDescent: public virtual SolvingMethod<T>
 {
 	public:
+    //Constructor for a SteepestDescent object. Lower errors will yield more accurate results and longer
+    //computation time
     SteepestDescent ( double error ): SolvingMethod<T> ( error, "Steepest Descent" ) {} 
+    
+    //overloaded () operator. Given the A and b from the equation Ax=b, this function will return the solution computed using
+    //the Steepest Descent method. It will also reset iterations and keep track of how many operations it takes to solve
+    //the equation
     virtual Vector<T> operator()( const MatrixBase<T> & A, const Vector<T> & B )
     {
       if (A.size() != B.size())

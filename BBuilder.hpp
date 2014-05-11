@@ -1,3 +1,7 @@
+// Chris Garlock
+// CS 328 Final Project
+// Implementation file for the ABuilder class
+
 template<class T>
 Vector<T> BBuilder<T>::operator()(unsigned int n, TopFunc<T> tFunc, BotFunc<T> bFunc, LeftFunc<T> lFunc, RightFunc<T> rFunc)
 {

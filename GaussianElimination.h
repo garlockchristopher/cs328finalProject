@@ -1,3 +1,6 @@
+// Chris Garlock
+// CS 328 Final Project
+// Header file for the GaussianElimination class
 #ifndef GAUSSIAN_ELIMINATION_H
 #define GAUSSIAN_ELIMINATION_H
 
@@ -10,9 +13,16 @@ template <class T>
 class GaussianElimination: public virtual SolvingMethod<T>
 {
   public:
+    //Constructor for a GaussianElimination.  error is never used for this method so it is defaulted
+    //to -1.  
     GaussianElimination(double error = -1): SolvingMethod<T>( error, "Gaussian Elimination" ){}
+    
+    //overloaded () operator. Given the A and b from the equation Ax=b, this function will return the solution computed using
+    //the Gaussian Elimination method. It will also reset iterations and keep track of how many operations it takes to solve
+    //the equation
     virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& B)
     {
+      SolvingMethod<T>::iterations = 0;
       Matrix<T> myMatrix(A.size());
       Vector<T> b = B;
       for(unsigned int i=0;i<myMatrix.size(); i++)
@@ -36,7 +46,7 @@ class GaussianElimination: public virtual SolvingMethod<T>
             myMatrix.rowOp(i,mult,j);
             b.rowOp(i,mult,j);
             myMatrix[j][i] = 0;
-            SolvingMethod<T>:: iterations++;
+            SolvingMethod<T>::iterations++;
           }
         }
       }

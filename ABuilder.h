@@ -15,6 +15,8 @@ template <typename T>
 class ABuilder
 {
   public:
+    //purpose: given a size n, this function will return a Symmetric matrix of size (n-1)^2 to be used
+    //         for giving an approximated solution to Laplace's equation using linear algebra
     Symmetric<T> operator() ( unsigned int n );
 };
 
