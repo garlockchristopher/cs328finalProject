@@ -69,6 +69,8 @@ class Vector
     // Pre: Vectors are of the same length T can be assigned 0
     // Returns: the dot product of the calling object and rhs
     T operator* (const Vector<T>& rhs) const;
+    
+    Vector<T> operator* ( const T & scalar ) const;
 	
     // Purpose: negates every element of the Vector
     // Pre:  negation ( unary - ) operator is defined for type T.

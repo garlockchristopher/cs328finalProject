@@ -9,7 +9,7 @@ template <class T>
 class GaussSiedel: public virtual SolvingMethod<T>
 {
   public:
-    GaussSiedel(double error): SolvingMethod<T>( error ){}
+    GaussSiedel(double error): SolvingMethod<T>( error, "Gauss Siedel" ){}
     
     virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& b)
     {

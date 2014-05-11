@@ -92,6 +92,15 @@ T Vector<T>::norm()const
 }
 
 template <class T>
+Vector<T> Vector<T>:: operator* ( const T & scalar ) const 
+{ 
+  Vector<T> scaled = *this;
+  for ( unsigned int i = 0; i < size(); i++ )
+    scaled[i] *= scalar;
+  return scaled;
+}
+
+template <class T>
 Vector<T> Vector<T>:: operator- ( const Vector<T> & rhs ) const
 {
   if (m_vector.size() != rhs.size())

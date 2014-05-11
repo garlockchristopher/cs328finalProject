@@ -10,7 +10,7 @@ template <class T>
 class GaussianElimination: public virtual SolvingMethod<T>
 {
   public:
-    GaussianElimination(double error = -1): SolvingMethod<T>( error ){}
+    GaussianElimination(double error = -1): SolvingMethod<T>( error, "Gaussian Elimination" ){}
     virtual Vector<T> operator()(const MatrixBase<T>& A, const Vector<T>& B)
     {
       Matrix<T> myMatrix(A.size());

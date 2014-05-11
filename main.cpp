@@ -28,12 +28,14 @@ int main()
   
   //Fill a Vector with solving methods
   
-  SolvingMethod<double> * methods[2];
+  SolvingMethod<double> * methods[3];
   methods[0] = new GaussianElimination<double>;
   methods[1] = new GaussSiedel<double>( .00001 );
+  methods[2] = new SteepestDescent<double>( .00001 );
   
-  for ( unsigned int i = 0; i < 2; i++ )
+  for ( unsigned int i = 0; i <= 2; i++ )
   {
+    cout << i << endl;
     Vector<double> x = methods[i] -> operator()(A, b);
     
     //print results  
@@ -41,8 +43,9 @@ int main()
     cout << "\nb: \n" << b << endl;  
     cout << "\nx: \n" << x << endl;
     Matrix<double> solution = solutionMatrix(x, tFunc, bFunc, lFunc, rFunc);
-    cout << "\n Solution Matrix for the Gaussian Elimination Method: \n" << solution << endl;
+    cout << "\n Solution Matrix for the " << methods[i] -> getName() << " Method: \n" << solution << endl;
   }
+  delete [] methods;
 }
 
 template <class T>

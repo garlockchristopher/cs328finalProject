@@ -16,7 +16,7 @@ template <typename T>
 class SteepestDescent: public virtual SolvingMethod<T>
 {
 	public:
-    SteepestDescent ( double error ): SolvingMethod<T> ( error ) {} 
+    SteepestDescent ( double error ): SolvingMethod<T> ( error, "Steepest Descent" ) {} 
     virtual Vector<T> operator()( const MatrixBase<T> & A, const Vector<T> & B )
     {
       if (A.size() != B.size())
@@ -37,7 +37,7 @@ class SteepestDescent: public virtual SolvingMethod<T>
         alpha = ( Diff * Diff ) / (( A * X ) * X );
         X = X + ( Diff * alpha );
         SolvingMethod<T>:: iterations++;
-      } while ( (X - prevX).norm() > SolvingMethod<T>:: errorTolerance );
+      } while ( (X - prevX ).norm() > SolvingMethod<T>:: errorTolerance );
       
       return X;
     }
