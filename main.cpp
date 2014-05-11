@@ -29,9 +29,12 @@ int main()
   //Fill a Vector with solving methods
   
   SolvingMethod<double> * methods[3];
-  methods[0] = new GaussianElimination<double>;
-  methods[1] = new GaussSiedel<double>( .00001 );
-  methods[2] = new SteepestDescent<double>( .00001 );
+  GaussianElimination<double> gElim;
+  GaussSiedel<double> gSied(.00001);
+  SteepestDescent<double> sDescent(.00001);
+  methods[0] = &gElim;
+  methods[1] = &gSied;
+  methods[2] = &sDescent;
   
   for ( unsigned int i = 0; i <= 2; i++ )
   {
@@ -44,8 +47,10 @@ int main()
     cout << "\nx: \n" << x << endl;
     Matrix<double> solution = solutionMatrix(x, tFunc, bFunc, lFunc, rFunc);
     cout << "\n Solution Matrix for the " << methods[i] -> getName() << " Method: \n" << solution << endl;
+    //delete methods[i];
   }
-  delete [] methods;
+  
+  //delete [] methods;
 }
 
 template <class T>
